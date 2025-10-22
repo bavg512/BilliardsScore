@@ -20,63 +20,61 @@ A comprehensive mobile application for tracking solo billiards practice sessions
 - **State Management**: React Context API + Hooks
 - **Icons**: React Native Vector Icons
 
-## Prerequisites
+## Quick Start
 
-Before you begin, ensure you have the following installed:
+### 📚 Complete Setup Guides
 
-- **Node.js**: v18 or higher ([Download](https://nodejs.org/))
-- **npm**: v8 or higher (comes with Node.js)
-- **Expo CLI**: Install globally with `npm install -g expo-cli`
-- **Mobile Device**: iOS or Android phone with Expo Go app installed
-  - [Expo Go for iOS](https://apps.apple.com/app/expo-go/id982107779)
-  - [Expo Go for Android](https://play.google.com/store/apps/details?id=host.exp.exponent)
+For detailed setup instructions, see our comprehensive documentation:
 
-## Installation
+- **[Development Environment Setup](./docs/DEVELOPMENT_SETUP.md)** - Install prerequisites, clone repo, run the app
+- **[Firebase Configuration](./docs/FIREBASE_SETUP.md)** - Set up authentication and database (required)
+- **[Troubleshooting Guide](./docs/TROUBLESHOOTING.md)** - Solutions to common issues
 
-1. **Clone the repository**
+### ⚡ Quick Installation
+
+If you're experienced with React Native and Expo:
+
+1. **Clone and install**
    ```bash
    git clone https://github.com/yourusername/BilliardsScore.git
    cd BilliardsScore
-   ```
-
-2. **Install dependencies**
-   ```bash
    npm install
    ```
 
-3. **Set up environment variables**
-   ```bash
-   cp .env.example .env
-   # Edit .env with your Firebase configuration
-   ```
+2. **Configure Firebase**
+   - Follow [Firebase Setup Guide](./docs/FIREBASE_SETUP.md)
+   - Update `app.json` with your Firebase credentials
 
-4. **Start the development server**
+3. **Run the app**
    ```bash
    npm start
    ```
 
-5. **Run on your device**
-   - Scan the QR code with Expo Go app (Android)
-   - Scan the QR code with Camera app (iOS)
+4. **Open on device**
+   - Scan QR code with Expo Go app (iOS/Android)
 
 ## Project Structure
 
 ```
 BilliardsScore/
 ├── assets/              # Images, fonts, and other static assets
+├── docs/                # Documentation files
+│   ├── DEVELOPMENT_SETUP.md
+│   ├── FIREBASE_SETUP.md
+│   └── TROUBLESHOOTING.md
 ├── src/
-│   ├── components/      # Reusable UI components
-│   ├── screens/         # Full-screen views
-│   ├── navigation/      # Navigation configuration
+│   ├── components/      # Reusable UI components (Button, Input)
+│   ├── screens/         # Full-screen views (Login, Register, Home)
+│   ├── navigation/      # Navigation configuration (Auth, Main, Root)
 │   ├── services/        # Firebase and external services
-│   ├── context/         # React Context providers
+│   ├── context/         # React Context providers (AuthContext)
 │   ├── hooks/           # Custom React hooks
 │   ├── utils/           # Helper functions
 │   └── constants/       # App-wide constants
 ├── App.js               # Application entry point
 ├── app.json             # Expo configuration
 ├── package.json         # Dependencies and scripts
-└── README.md            # This file
+└── PROJECT_ROADMAP.md   # Development roadmap
 ```
 
 ## Available Scripts
@@ -112,53 +110,56 @@ BilliardsScore/
 
 ## Firebase Setup
 
-1. **Create a Firebase project**
-   - Go to [Firebase Console](https://console.firebase.google.com/)
-   - Click "Add Project"
-   - Follow the setup wizard
+**📖 See [Complete Firebase Setup Guide](./docs/FIREBASE_SETUP.md)** for detailed instructions.
 
-2. **Enable Authentication**
-   - Navigate to Authentication > Sign-in method
-   - Enable Email/Password provider
+**Quick steps:**
+1. Create Firebase project at [console.firebase.google.com](https://console.firebase.google.com/)
+2. Enable Email/Password authentication
+3. Create Firestore database with security rules
+4. Add Firebase configuration to `app.json`
 
-3. **Create Firestore Database**
-   - Navigate to Firestore Database
-   - Create database in production mode
-   - Set up security rules
+**Configuration:**
 
-4. **Get configuration**
-   - Project Settings > General
-   - Scroll to "Your apps" section
-   - Add a web app and copy configuration
-   - Add credentials to `.env` file
+Update the `extra` section in `app.json` with your Firebase credentials:
 
-## Environment Variables
-
-Create a `.env` file in the root directory:
-
-```env
-FIREBASE_API_KEY=your_api_key
-FIREBASE_AUTH_DOMAIN=your_auth_domain
-FIREBASE_PROJECT_ID=your_project_id
-FIREBASE_STORAGE_BUCKET=your_storage_bucket
-FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-FIREBASE_APP_ID=your_app_id
+```json
+{
+  "expo": {
+    "extra": {
+      "FIREBASE_API_KEY": "your-api-key",
+      "FIREBASE_AUTH_DOMAIN": "your-project.firebaseapp.com",
+      "FIREBASE_PROJECT_ID": "your-project-id",
+      "FIREBASE_STORAGE_BUCKET": "your-project.appspot.com",
+      "FIREBASE_MESSAGING_SENDER_ID": "your-sender-id",
+      "FIREBASE_APP_ID": "your-app-id"
+    }
+  }
+}
 ```
 
 ## Roadmap
 
 See [PROJECT_ROADMAP.md](./PROJECT_ROADMAP.md) for the complete development plan.
 
-### Current Phase: Phase 1 - Project Foundation ✅
-- [x] Project initialization
-- [x] Folder structure setup
-- [x] Core dependencies
-- [x] Configuration files
+### ✅ Phase 1: Project Foundation (Complete)
+- [x] Project initialization with React Native + Expo
+- [x] Folder structure and organization
+- [x] Core dependencies and configuration
+- [x] ESLint and Prettier setup
 
-### Next Phase: Phase 2 - User Authentication
-- [ ] Firebase setup
-- [ ] Login/Register screens
-- [ ] Authentication flow
+### ✅ Phase 2: User Authentication (Complete)
+- [x] Firebase integration with AsyncStorage persistence
+- [x] Login/Register/Forgot Password screens
+- [x] AuthContext for global state management
+- [x] Protected route navigation
+- [x] Session persistence
+
+### 🚀 Next: Phase 3 - Core Shot Tracking
+- [ ] Game type selection screen
+- [ ] Shot tracking interface (Make, Miss, Foul, Defense)
+- [ ] Player turn management
+- [ ] Real-time statistics display
+- [ ] Shot history timeline
 
 ## Contributing
 
@@ -186,11 +187,20 @@ Coming soon in Phase 8.
 
 MIT License - see LICENSE file for details
 
+## Documentation
+
+Complete documentation is available in the [docs](./docs/) directory:
+
+- **[Development Setup](./docs/DEVELOPMENT_SETUP.md)** - Complete environment setup guide
+- **[Firebase Setup](./docs/FIREBASE_SETUP.md)** - Firebase configuration walkthrough
+- **[Troubleshooting](./docs/TROUBLESHOOTING.md)** - Solutions to common issues
+
 ## Support
 
 For issues and questions:
-- Create an issue on GitHub
-- Check the [PROJECT_ROADMAP.md](./PROJECT_ROADMAP.md) for planned features
+- **Bug reports**: Create an issue on GitHub
+- **Setup help**: Check [Troubleshooting Guide](./docs/TROUBLESHOOTING.md)
+- **Feature requests**: See [PROJECT_ROADMAP.md](./PROJECT_ROADMAP.md)
 
 ## Acknowledgments
 
@@ -200,4 +210,6 @@ For issues and questions:
 
 ---
 
-**Status**: Phase 1 Complete - Foundation Established 🎱
+**Status**: Phase 2 Complete - Authentication System Ready 🎱
+
+**Last Updated:** 2025-10-22
